@@ -1,21 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ChevronsDown } from 'lucide-react';
 
 const Hero = () => {
     return (
         <div className="relative h-screen w-full overflow-hidden">
-            {/* Video de Fondo */}
+            {/* Video de Fondo Optimizado */}
             <video
                 className="absolute top-0 left-0 w-full h-full object-cover"
-                src="https://videos.pexels.com/video-files/8556302/8556302-uhd_2560_1440_25fps.mp4"
+                src="https://res.cloudinary.com/dpfcnt5vf/video/upload/q_auto,f_auto/v1764192762/vecteezy_red-wine-bottle-and-clear-glass-with-red-wine-put-on-a-wine_7069707_ommt7s.mov"
+                poster="https://images.pexels.com/photos/2912108/pexels-photo-2912108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 autoPlay
                 loop
                 muted
                 playsInline
             />
 
-            {/* Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60" />
+            {/* Capa de Contraste (Overlay) */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
 
             {/* Contenido Central */}
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
@@ -48,6 +50,15 @@ const Hero = () => {
                     Analizar mi Vino
                 </motion.button>
             </div>
+
+            {/* Indicador de Scroll */}
+            <motion.div
+                className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white/80"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <ChevronsDown size={40} />
+            </motion.div>
         </div>
     );
 };
