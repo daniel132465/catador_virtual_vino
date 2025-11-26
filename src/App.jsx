@@ -1,11 +1,12 @@
 import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-4xl font-bold text-vino-gold glass p-10 rounded-xl">
-        Hola Mundo
-      </div>
+    <div className="min-h-screen bg-vino-dark text-vino-light">
+      <Navbar />
+      <Hero />
     </div>
   );
 }

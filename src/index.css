@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-vino-dark: #050505;
-  --color-vino-red: #FF0040;
-  --color-vino-gold: #E0E0E0;
-  --color-vino-light: #FFFFFF;
+  --color-vino-dark: #0a0a0a;
+  --color-vino-red: #722F37;
+  --color-vino-gold: #D4AF37;
+  --color-vino-light: #F3F4F6;
 }
 
 :root {
