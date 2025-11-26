@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-vino-dark: #050505;
+  --color-vino-red: #FF0040;
+  --color-vino-gold: #E0E0E0;
+  --color-vino-light: #FFFFFF;
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,7 +19,8 @@
 }
 
 body {
-  @apply bg-vino-dark text-vino-light;
+  background-color: var(--color-vino-dark);
+  color: var(--color-vino-light);
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
