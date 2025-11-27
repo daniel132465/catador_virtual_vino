@@ -4,7 +4,7 @@ import { ChevronsDown } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <div className="relative h-screen w-full overflow-hidden">
+        <div id="home" className="relative h-screen w-full overflow-hidden">
             {/* Video de Fondo Optimizado */}
             <video
                 className="absolute top-0 left-0 w-full h-full object-cover"

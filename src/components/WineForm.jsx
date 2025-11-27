@@ -64,7 +64,7 @@ const WineForm = () => {
     };
 
     return (
-        <section className="py-20 bg-vino-dark relative overflow-hidden">
+        <section id="catador" className="py-24 bg-vino-dark relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -74,10 +74,10 @@ const WineForm = () => {
                 >
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-serif text-vino-gold mb-4">
-                            Análisis de Calidad
+                            Pon a Prueba al Catador Virtual
                         </h2>
-                        <p className="text-gray-300">
-                            Ingresa los parámetros químicos de tu vino para obtener una predicción de calidad instantánea.
+                        <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                            Este sistema utiliza un modelo de Random Forest (Bosques Aleatorios) entrenado con un dataset riguroso de más de 4,000 muestras de vino validadas por expertos. Al ingresar los parámetros químicos, la IA detecta patrones invisibles al ojo humano para predecir la calidad con alta precisión (84%).
                         </p>
                     </div>
 

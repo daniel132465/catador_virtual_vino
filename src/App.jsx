@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WineForm from './components/WineForm';
 
+import AboutUs from './components/AboutUs';
+import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
       <Navbar />
       <Hero />
       <WineForm />
+      <AboutUs />
+      <Footer />
     </div>
   );
 }
