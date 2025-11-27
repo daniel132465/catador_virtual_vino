@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronsDown } from 'lucide-react';
 
-const Hero = () => {
+const Hero = ({ onOpenModal }) => {
     return (
         <div id="home" className="relative h-screen w-full overflow-hidden">
             {/* Video de Fondo Optimizado */}
@@ -45,6 +45,7 @@ const Hero = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.3 }}
+                    onClick={onOpenModal}
                     className="bg-vino-red text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:bg-red-900 transition-colors duration-300 border border-white/10 backdrop-blur-sm"
                 >
                     Analizar mi Vino
