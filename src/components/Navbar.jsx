@@ -8,8 +8,15 @@ const Navbar = () => {
         <nav className="fixed top-0 left-0 w-full z-50 glass px-6 py-4">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 {/* Logo */}
-                <div className="text-vino-gold font-serif text-2xl font-bold tracking-wider cursor-pointer">
-                    NOVATOR AI
+                <div className="flex items-center gap-3 cursor-pointer">
+                    <img
+                        src="https://res.cloudinary.com/dpfcnt5vf/image/upload/v1764204765/logo_de_novator_dfie1d.png"
+                        alt="Novator Logo"
+                        className="h-12 w-12 object-contain"
+                    />
+                    <span className="text-vino-gold font-serif text-2xl font-bold tracking-wider">
+                        NOVATOR AI
+                    </span>
                 </div>
 
                 {/* Desktop Menu */}
