@@ -3,11 +3,31 @@ import { motion } from 'framer-motion';
 import { User, Code, Database, BrainCircuit } from 'lucide-react';
 
 const AboutUs = () => {
-    const team = [
-        { name: 'Investigador 1', role: 'Data Scientist', icon: <Database className="w-6 h-6" /> },
-        { name: 'Investigador 2', role: 'Full Stack Dev', icon: <Code className="w-6 h-6" /> },
-        { name: 'Investigador 3', role: 'ML Engineer', icon: <BrainCircuit className="w-6 h-6" /> },
-        { name: 'Investigador 4', role: 'UX/UI Designer', icon: <User className="w-6 h-6" /> },
+    const teamMembers = [
+        {
+            name: 'Daniel Catari',
+            role: 'Estudiante de Ingeniería de Sistemas',
+            institution: 'Escuela Militar de Ingeniería (EMI)',
+            image: 'https://res.cloudinary.com/dpfcnt5vf/image/upload/v1764217407/daniel_wbbfk5.jpg'
+        },
+        {
+            name: 'Ariel Fabricio Tarqui',
+            role: 'Estudiante de Ingeniería de Sistemas',
+            institution: 'Escuela Militar de Ingeniería (EMI)',
+            image: 'https://res.cloudinary.com/dpfcnt5vf/image/upload/v1764217408/Ariel_edcakv.jpg'
+        },
+        {
+            name: 'Guillermo Fabio Rodriguez',
+            role: 'Estudiante de Ingeniería de Sistemas',
+            institution: 'Escuela Militar de Ingeniería (EMI)',
+            image: 'https://res.cloudinary.com/dpfcnt5vf/image/upload/v1764217408/Guillermo_vhypgz.jpg'
+        },
+        {
+            name: 'Daner Guido Jimenez',
+            role: 'Estudiante de Ingeniería de Sistemas',
+            institution: 'Escuela Militar de Ingeniería (EMI)',
+            image: 'https://res.cloudinary.com/dpfcnt5vf/image/upload/v1764217407/Jimenez_fjm72e.jpg'
+        }
     ];
 
     return (
@@ -33,18 +53,18 @@ const AboutUs = () => {
                 </motion.div>
 
                 {/* El Equipo */}
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     <motion.h3
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="text-2xl md:text-3xl font-serif text-white mb-10 text-center md:text-left border-l-4 border-vino-gold pl-4"
+                        className="text-2xl md:text-3xl font-serif text-white mb-12 text-center md:text-left border-l-4 border-vino-gold pl-4"
                     >
                         Grupo de Investigación Novator
                     </motion.h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {team.map((member, index) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {teamMembers.map((member, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 30 }}
@@ -52,13 +72,16 @@ const AboutUs = () => {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="glass p-6 rounded-xl flex flex-col items-center text-center hover:bg-white/5 transition-colors duration-300 group"
                             >
-                                <div className="w-20 h-20 rounded-full border-2 border-vino-gold flex items-center justify-center mb-4 bg-vino-dark group-hover:scale-110 transition-transform duration-300">
-                                    <div className="text-vino-gold">
-                                        {member.icon}
-                                    </div>
+                                <div className="w-40 h-40 rounded-full border-2 border-vino-gold overflow-hidden mb-6 group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-vino-gold/20">
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
-                                <h4 className="text-xl font-bold text-white mb-1">{member.name}</h4>
-                                <p className="text-vino-gold/80 text-sm font-medium uppercase tracking-wider">{member.role}</p>
+                                <h4 className="text-xl font-bold text-white mb-2">{member.name}</h4>
+                                <p className="text-gray-300 text-sm font-medium">{member.role}</p>
+                                <p className="text-gray-500 text-xs mt-1">{member.institution}</p>
                             </motion.div>
                         ))}
                     </div>
