@@ -28,21 +28,21 @@ const WineForm = ({ isActive }) => {
 
     const inputGroups = [
         [ // Tab 0: Físico-Químico
-            { name: 'fixedAcidity', label: 'Acidez Fija', min: 4, max: 16, step: 0.1 },
-            { name: 'volatileAcidity', label: 'Acidez Volátil', min: 0.1, max: 2, step: 0.01 },
-            { name: 'citricAcid', label: 'Ácido Cítrico', min: 0, max: 1, step: 0.01 },
-            { name: 'pH', label: 'pH', min: 2.5, max: 4.5, step: 0.01 },
+            { name: 'fixedAcidity', label: 'Acidez Fija', min: 4.0, max: 15.0, step: 0.1, unit: 'g/dm³' },
+            { name: 'volatileAcidity', label: 'Acidez Volátil', min: 0.1, max: 1.1, step: 0.01, unit: 'g/dm³' },
+            { name: 'citricAcid', label: 'Ácido Cítrico', min: 0.0, max: 1.0, step: 0.01, unit: 'g/dm³' },
+            { name: 'pH', label: 'pH', min: 2.7, max: 4.0, step: 0.01, unit: '' },
         ],
         [ // Tab 1: Composición
-            { name: 'residualSugar', label: 'Azúcar Residual', min: 0, max: 20, step: 0.1 },
-            { name: 'chlorides', label: 'Cloruros', min: 0, max: 0.2, step: 0.001 },
-            { name: 'freeSulfurDioxide', label: 'Dióxido de Azufre Libre', min: 1, max: 72, step: 1 },
-            { name: 'totalSulfurDioxide', label: 'Dióxido de Azufre Total', min: 6, max: 289, step: 1 },
+            { name: 'residualSugar', label: 'Azúcar Residual', min: 0.6, max: 66.0, step: 0.1, unit: 'g/dm³' },
+            { name: 'chlorides', label: 'Cloruros', min: 0.01, max: 0.35, step: 0.001, unit: 'g/dm³' },
+            { name: 'sulphates', label: 'Sulfatos', min: 0.2, max: 1.1, step: 0.01, unit: 'g/dm³' },
+            { name: 'density', label: 'Densidad', min: 0.98, max: 1.04, step: 0.0001, unit: 'g/cm³' },
         ],
         [ // Tab 2: Propiedades
-            { name: 'density', label: 'Densidad', min: 0.99, max: 1.01, step: 0.0001 },
-            { name: 'sulphates', label: 'Sulfatos', min: 0.3, max: 2, step: 0.01 },
-            { name: 'alcohol', label: 'Alcohol', min: 8, max: 15, step: 0.1 },
+            { name: 'freeSulfurDioxide', label: 'Dióxido de Azufre Libre', min: 2, max: 290, step: 1, unit: 'mg/dm³' },
+            { name: 'totalSulfurDioxide', label: 'Dióxido de Azufre Total', min: 10, max: 440, step: 1, unit: 'mg/dm³' },
+            { name: 'alcohol', label: 'Grados de Alcohol', min: 8.0, max: 15.0, step: 0.1, unit: '% vol' },
         ],
     ];
 
@@ -160,7 +160,7 @@ const WineForm = ({ isActive }) => {
                                                         {field.label}
                                                     </label>
                                                     <span className="text-vino-gold font-mono text-sm bg-vino-gold/10 px-2 py-1 rounded">
-                                                        {formData[field.name]}
+                                                        {formData[field.name]} {field.unit}
                                                     </span>
                                                 </div>
                                                 <input
