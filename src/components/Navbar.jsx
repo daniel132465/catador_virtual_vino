@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ onOpenCatador }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -26,7 +26,15 @@ const Navbar = () => {
                             <a href="#home">Inicio</a>
                         </li>
                         <li className="hover:text-vino-gold transition-colors duration-300 cursor-pointer">
-                            <a href="#catador">Catador</a>
+                            <a
+                                href="#catador"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    onOpenCatador();
+                                }}
+                            >
+                                Catador Virtual
+                            </a>
                         </li>
                         <li className="hover:text-vino-gold transition-colors duration-300 cursor-pointer">
                             <a href="#nosotros">Sobre Nosotros</a>
@@ -58,9 +66,13 @@ const Navbar = () => {
                     <a
                         href="#catador"
                         className="text-vino-light hover:text-vino-gold text-lg font-medium transition-colors"
-                        onClick={() => setIsOpen(false)}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setIsOpen(false);
+                            onOpenCatador();
+                        }}
                     >
-                        Sobre Catador IA
+                        Catador Virtual
                     </a>
                     <a
                         href="#nosotros"

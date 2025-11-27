@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FlaskConical, Activity, Droplets, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
-const WineForm = () => {
+const WineForm = ({ isActive }) => {
     const [activeTab, setActiveTab] = useState(0);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
@@ -52,6 +52,7 @@ const WineForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!isActive) return;
         setLoading(true);
         setResult(null);
 
@@ -64,7 +65,7 @@ const WineForm = () => {
     };
 
     return (
-        <section id="catador" className="py-24 bg-vino-dark relative overflow-hidden">
+        <section id="catador" className={`py-24 bg-vino-dark relative overflow-hidden transition-all duration-1000 ${isActive ? 'opacity-100 filter-none' : 'opacity-50 grayscale blur-sm pointer-events-none'}`}>
             <div className="container mx-auto px-4 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -139,7 +140,7 @@ const WineForm = () => {
                             <div className="mt-12 flex justify-center">
                                 <button
                                     type="submit"
-                                    disabled={loading}
+                                    disabled={loading || !isActive}
                                     className="group relative px-8 py-4 bg-vino-red hover:bg-red-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-vino-red/30 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
                                 >
                                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
