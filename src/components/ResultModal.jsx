@@ -12,24 +12,29 @@ const ResultModal = ({ isOpen, onClose, result, data }) => {
             title: 'Físico-Químico',
             icon: <FlaskConical className="w-4 h-4 text-vino-gold" />,
             items: [
-                { label: 'Acidez Volátil', value: data.volatileAcidity, ref: '0.08 - 1.1', unit: 'g/dm³' },
-                { label: 'pH', value: data.pH, ref: '2.7 - 4.0', unit: '' },
+                { label: 'Acidez Fija', value: data.fixedAcidity, unit: 'g/dm³' },
+                { label: 'Acidez Volátil', value: data.volatileAcidity, unit: 'g/dm³' },
+                { label: 'Ácido Cítrico', value: data.citricAcid, unit: 'g/dm³' },
+                { label: 'pH', value: data.pH, unit: '' },
             ]
         },
         {
             title: 'Composición',
             icon: <Droplets className="w-4 h-4 text-vino-gold" />,
             items: [
-                { label: 'Azúcar', value: data.residualSugar, ref: '0.6 - 66', unit: 'g/dm³' },
-                { label: 'Sulfatos', value: data.sulphates, ref: '0.2 - 1.1', unit: 'g/dm³' },
+                { label: 'Azúcar Residual', value: data.residualSugar, unit: 'g/dm³' },
+                { label: 'Cloruros', value: data.chlorides, unit: 'g/dm³' },
+                { label: 'Sulfatos', value: data.sulphates, unit: 'g/dm³' },
+                { label: 'Densidad', value: data.density, unit: 'g/cm³' },
             ]
         },
         {
             title: 'Propiedades',
             icon: <Activity className="w-4 h-4 text-vino-gold" />,
             items: [
-                { label: 'Alcohol', value: data.alcohol, ref: '8.0 - 14.2', unit: '% vol' },
-                { label: 'Azufre Total', value: data.totalSulfurDioxide, ref: '9 - 440', unit: 'mg/dm³' },
+                { label: 'Azufre Libre', value: data.freeSulfurDioxide, unit: 'mg/dm³' },
+                { label: 'Azufre Total', value: data.totalSulfurDioxide, unit: 'mg/dm³' },
+                { label: 'Alcohol', value: data.alcohol, unit: '% vol' },
             ]
         }
     ];
@@ -93,16 +98,11 @@ const ResultModal = ({ isOpen, onClose, result, data }) => {
                                         </div>
                                         <div className="space-y-3">
                                             {group.items.map((item, idx) => (
-                                                <div key={idx} className="bg-black/20 p-3 rounded-lg">
-                                                    <div className="flex justify-between items-baseline mb-1">
-                                                        <span className="text-gray-400 text-sm">{item.label}</span>
-                                                        <span className="text-white font-mono font-medium">
-                                                            {item.value} <span className="text-xs text-gray-500">{item.unit}</span>
-                                                        </span>
-                                                    </div>
-                                                    <div className="text-xs text-gray-500 text-right">
-                                                        Ref: {item.ref}
-                                                    </div>
+                                                <div key={idx} className="bg-black/20 p-2 rounded flex justify-between items-center">
+                                                    <span className="text-gray-400 text-xs">{item.label}</span>
+                                                    <span className="text-white font-mono text-sm font-medium">
+                                                        {item.value} <span className="text-[10px] text-gray-500">{item.unit}</span>
+                                                    </span>
                                                 </div>
                                             ))}
                                         </div>

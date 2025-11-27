@@ -60,8 +60,6 @@ const WineForm = ({ isActive }) => {
         setResult(null);
         setError(null);
 
-        console.log("Enviando datos al backend...");
-
         try {
             const payload = {
                 fixed_acidity: formData.fixedAcidity,
@@ -91,7 +89,6 @@ const WineForm = ({ isActive }) => {
             }
 
             const data = await response.json();
-            console.log("Respuesta recibida:", data);
 
             const quality = data.prediction === 'BUENO' ? 'EXCELENTE' : 'REGULAR';
             setResult(quality);
