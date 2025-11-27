@@ -50,18 +50,60 @@ const WineForm = ({ isActive }) => {
         setFormData({ ...formData, [e.target.name]: parseFloat(e.target.value) });
     };
 
-    const handleSubmit = (e) => {
+    const [error, setError] = useState(null);
+
+    // ...
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isActive) return;
         setLoading(true);
         setResult(null);
+        setError(null); // Clear previous errors
 
-        // Mock Logic
-        setTimeout(() => {
-            setLoading(false);
-            const quality = formData.alcohol > 10 ? 'EXCELENTE' : 'REGULAR';
+        console.log("Enviando datos al backend...");
+
+        try {
+            // Mapeo de nombres de variables del frontend (camelCase) a backend (snake_case)
+            const payload = {
+                fixed_acidity: formData.fixedAcidity,
+                volatile_acidity: formData.volatileAcidity,
+                citric_acid: formData.citricAcid,
+                residual_sugar: formData.residualSugar,
+                chlorides: formData.chlorides,
+                free_sulfur_dioxide: formData.freeSulfurDioxide,
+                total_sulfur_dioxide: formData.totalSulfurDioxide,
+                density: formData.density,
+                pH: formData.pH,
+                sulphates: formData.sulphates,
+                alcohol: formData.alcohol
+            };
+
+            const response = await fetch('http://127.0.0.1:8000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Error del servidor: ${response.status} - ${errorText}`);
+            }
+
+            const data = await response.json();
+            console.log("Respuesta recibida:", data);
+
+            const quality = data.prediction === 'BUENO' ? 'EXCELENTE' : 'REGULAR';
             setResult(quality);
-        }, 2000);
+
+        } catch (error) {
+            console.error('Error en handleSubmit:', error);
+            setError(`Error: ${error.message}. Asegúrate de que el backend esté corriendo en el puerto 8000.`);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -159,6 +201,11 @@ const WineForm = ({ isActive }) => {
                                     </span>
                                 </button>
                             </div>
+                            {error && (
+                                <div className="mt-4 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-center">
+                                    {error}
+                                </div>
+                            )}
                         </form>
 
                         {/* Result Card */}
