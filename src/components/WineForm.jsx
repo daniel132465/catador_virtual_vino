@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FlaskConical, Activity, Droplets, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { FlaskConical, Activity, Droplets, Loader2 } from 'lucide-react';
+import ResultModal from './ResultModal';
 
 const WineForm = ({ isActive }) => {
     const [activeTab, setActiveTab] = useState(0);
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
+    const [error, setError] = useState(null);
+
     const [formData, setFormData] = useState({
         fixedAcidity: 7.4,
         volatileAcidity: 0.7,
@@ -50,21 +53,16 @@ const WineForm = ({ isActive }) => {
         setFormData({ ...formData, [e.target.name]: parseFloat(e.target.value) });
     };
 
-    const [error, setError] = useState(null);
-
-    // ...
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isActive) return;
         setLoading(true);
         setResult(null);
-        setError(null); // Clear previous errors
+        setError(null);
 
         console.log("Enviando datos al backend...");
 
         try {
-            // Mapeo de nombres de variables del frontend (camelCase) a backend (snake_case)
             const payload = {
                 fixed_acidity: formData.fixedAcidity,
                 volatile_acidity: formData.volatileAcidity,
@@ -207,44 +205,16 @@ const WineForm = ({ isActive }) => {
                                 </div>
                             )}
                         </form>
-
-                        {/* Result Card */}
-                        <AnimatePresence>
-                            {result && (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                                    className="mt-12 p-6 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-vino-gold/30 shadow-2xl relative overflow-hidden"
-                                >
-                                    <div className={`absolute top-0 left-0 w-1 h-full ${result === 'EXCELENTE' ? 'bg-green-500' : 'bg-yellow-500'}`} />
-                                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                                        <div className="flex items-center gap-4">
-                                            <div className={`p-4 rounded-full ${result === 'EXCELENTE' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
-                                                {result === 'EXCELENTE' ? <CheckCircle className="w-8 h-8" /> : <AlertCircle className="w-8 h-8" />}
-                                            </div>
-                                            <div>
-                                                <h3 className="text-2xl font-serif text-white mb-1">
-                                                    Resultado: <span className={result === 'EXCELENTE' ? 'text-green-400' : 'text-yellow-400'}>{result}</span>
-                                                </h3>
-                                                <p className="text-gray-400">
-                                                    {result === 'EXCELENTE'
-                                                        ? 'Este vino presenta características excepcionales.'
-                                                        : 'Este vino tiene características promedio.'}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="text-right">
-                                            <p className="text-sm text-gray-500 mb-1">Confianza del Modelo</p>
-                                            <p className="text-xl font-mono text-vino-gold">94.2%</p>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
                     </div>
                 </motion.div>
             </div>
+
+            <ResultModal
+                isOpen={!!result}
+                onClose={() => setResult(null)}
+                result={result}
+                data={formData}
+            />
         </section>
     );
 };
